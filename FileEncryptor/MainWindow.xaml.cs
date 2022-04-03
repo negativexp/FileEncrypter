@@ -1,0 +1,125 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Forms;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace FileEncryptor
+{
+    /// <summary>
+    /// Interakční logika pro MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void Border_Drop(object sender, System.Windows.DragEventArgs e)
+        {
+            string[] files = ((string[])e.Data.GetData(System.Windows.DataFormats.FileDrop));
+            foreach (string item in files)
+            {
+                ListBoxFileNames.Items.Add(item);
+            }
+        }
+
+        private void CheckBoxChageDir_Checked(object sender, RoutedEventArgs e)
+        {
+            ButtonBrowse.Visibility = Visibility.Visible;
+            TextBoxLocation.Visibility = Visibility.Visible;
+        }
+
+        private void CheckBoxChageDir_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ButtonBrowse.Visibility = Visibility.Hidden;
+            TextBoxLocation.Visibility = Visibility.Hidden;
+        }
+
+        private void ButtonBrowse_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+
+                if(result == System.Windows.Forms.DialogResult.OK)
+                {
+                    TextBoxLocation.Text = dialog.SelectedPath;
+                }
+            }
+        }
+
+        private void ButtonStart_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] bytepass = Encoding.ASCII.GetBytes(hash.hash.Create(TextBoxPassword.Text));
+            //check if there are files to encrypt or decrypt
+            if (ListBoxFileNames.Items.Count != 0)
+            {
+                foreach (string item in ListBoxFileNames.Items)
+                {
+                    if(CheckIfFileIsAES(item))
+                    {
+                        //decrypt
+                        System.Windows.MessageBox.Show("decrypt");
+                        Decrypt(item, item, bytepass, item);
+                    }
+                    else
+                    {
+                        //encrypt
+                        System.Windows.MessageBox.Show("encrypt");
+                        Encrypt(item, item, bytepass, item);
+                    }
+                }
+            }
+            else
+            {
+                //throw a messagebox at user for being a monkey
+                System.Windows.MessageBox.Show("There aren't any files to process!");
+            }
+        }
+        private bool CheckIfFileIsAES(string file)
+        {
+            if (!file.EndsWith(".AES"))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void Encrypt(string inputfile, string outputfile, byte[] passoword, string item)
+        {
+            if((bool)CheckBoxChageDir.IsChecked)
+            {
+                AES.rijndaelManaged.Encrypt(inputfile, TextBoxLocation.Text + "/" + System.IO.Path.GetFileName(item) + ".AES", passoword);
+            }
+            else
+            {
+                AES.rijndaelManaged.Encrypt(inputfile, outputfile + ".AES", passoword);
+            }
+        }
+
+        private void Decrypt(string inputfile, string outputfile, byte[] passoword, string item)
+        {
+            if ((bool)CheckBoxChageDir.IsChecked)
+            {
+                AES.rijndaelManaged.Decrypt(inputfile, TextBoxLocation.Text + "/" + System.IO.Path.GetFileName(item), passoword);
+            }
+            else
+            {
+                AES.rijndaelManaged.Decrypt(inputfile, outputfile + ".AES", passoword);
+            }
+        }
+    }
+}

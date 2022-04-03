@@ -1,0 +1,79 @@
+﻿<Window x:Class="FileEncryptor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileEncryptor"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="800"
+        Background="White">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="List of files:" VerticalAlignment="Center" Grid.RowSpan="2" Margin="10"/>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Border Background="NavajoWhite" BorderBrush="Black" BorderThickness="1"
+                    Margin="5 20 10 10" AllowDrop="True" Drop="Border_Drop">
+                <TextBlock Text="Drag and Drop your files here!" Foreground="DimGray" FontSize="20"
+                           FontFamily="Segoe UI" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.RowSpan="2">
+            <TextBlock Text="Your files:" Margin="10 0 0 0" FontSize="14" FontFamily="Segoe UI"/>
+            <ListBox Name="ListBoxFileNames" Margin="10 20 5 10"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Salt bytes: " FontSize="14" FontFamily="Segoe UI" Padding="5" Grid.Row="0" Grid.Column="0"/>
+            <TextBox Name="TextBoxSaltBytes" FontSize="14" FontFamily="Segoe UI" HorizontalAlignment="Right" Height="20" Width="110" Margin="5"
+                     Grid.Row="0" Grid.Column="0"/>
+
+            <TextBlock Text="Key size: " FontSize="14" FontFamily="Segoe UI" Padding="5" Grid.Row="0" Grid.Column="1"/>
+            <TextBox Name="TextBoxKeySize" FontSize="14" FontFamily="Segoe UI" HorizontalAlignment="Right" Height="20" Width="110" Margin="0 0 10 0"
+                     Grid.Row="0" Grid.Column="1"/>
+
+            <TextBlock Text="Block size: " FontSize="14" FontFamily="Segoe UI" Padding="5" Grid.Row="1"/>
+            <TextBox Name="TextBoxBlockSize" FontSize="14" FontFamily="Segoe UI" HorizontalAlignment="Right" Height="20" Width="110" Margin="5"
+                     Grid.Row="1" Grid.Column="0"/>
+
+            <TextBlock Text="Password: " FontSize="14" FontFamily="Segoe UI" Padding="5" Grid.Row="1" Grid.Column="1"/>
+            <TextBox Name="TextBoxPassword" FontSize="14" FontFamily="Segoe UI" HorizontalAlignment="Right" Height="20" Width="110" Margin="0 0 10 0"
+                     Grid.Row="1" Grid.Column="1"/>
+
+            <TextBlock Text="Change location?" FontSize="14" FontFamily="Segoe UI" Padding="5" Grid.Row="2" Grid.Column="0"/>
+            <CheckBox Name="CheckBoxChageDir" HorizontalAlignment="Left" Margin="116,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="16"
+                      Checked="CheckBoxChageDir_Checked" Unchecked="CheckBoxChageDir_Unchecked"/>
+            <Button Name="ButtonBrowse" Content="Browse" Grid.Row="2" Grid.Column="1" Height="20" Width="75" HorizontalAlignment="Right"
+                    Margin="0 0 10 0" Click="ButtonBrowse_Click" Visibility="Hidden"/>
+            <TextBox Name="TextBoxLocation" Grid.Row="3" Grid.ColumnSpan="2" Height="20" FontSize="14" FontFamily="Segoe UI"
+                     Margin="5 0 10 0" IsReadOnly="True" Visibility="Hidden"/>
+
+
+            <Button Name="ButtonStart" Content="Start!" Height="20" Width="75" Grid.Row="4" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                    Margin="0 0 10 10" Click="ButtonStart_Click"/>
+
+        </Grid>
+    </Grid>
+</Window>
