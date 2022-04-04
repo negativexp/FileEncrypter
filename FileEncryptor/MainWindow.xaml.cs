@@ -72,7 +72,7 @@ namespace FileEncryptor
                     if(CheckIfFileIsAES(item))
                     {
                         //decrypt
-                        Decrypt(item, item.Replace(".AES", ""), bytepass);
+                        Decrypt(item, item.Replace(".aes", ""), bytepass);
                     }
                     else
                     {
@@ -89,7 +89,7 @@ namespace FileEncryptor
         }
         private bool CheckIfFileIsAES(string file)
         {
-            if (!file.EndsWith(".AES"))
+            if (!file.EndsWith(".aes"))
             {
                 return false;
             }
@@ -100,7 +100,7 @@ namespace FileEncryptor
         {
             if ((bool)CheckBoxChageDir.IsChecked)
             {
-                AES.rijndaelManaged.Decrypt(inputfile, TextBoxLocation.Text + "/" + System.IO.Path.GetFileName(outputfile.Replace(".AES", "")), passoword, Convert.ToInt32(TextBoxKeySize.Text), Convert.ToInt32(TextBoxBlockSize.Text), Encoding.ASCII.GetBytes(TextBoxSaltBytes.Text));
+                AES.rijndaelManaged.Decrypt(inputfile, TextBoxLocation.Text + "/" + System.IO.Path.GetFileName(outputfile.Replace(".aes", "")), passoword, Convert.ToInt32(TextBoxKeySize.Text), Convert.ToInt32(TextBoxBlockSize.Text), Encoding.ASCII.GetBytes(TextBoxSaltBytes.Text));
             }
             else
             {
@@ -111,11 +111,11 @@ namespace FileEncryptor
         {
             if ((bool)CheckBoxChageDir.IsChecked)
             {
-                AES.rijndaelManaged.Encrypt(inputfile, TextBoxLocation.Text + "/" + System.IO.Path.GetFileName(item) + ".AES", passoword, Convert.ToInt32(TextBoxKeySize.Text), Convert.ToInt32(TextBoxBlockSize.Text), Encoding.ASCII.GetBytes(TextBoxSaltBytes.Text));
+                AES.rijndaelManaged.Encrypt(inputfile, TextBoxLocation.Text + "/" + System.IO.Path.GetFileName(item) + ".aes", passoword, Convert.ToInt32(TextBoxKeySize.Text), Convert.ToInt32(TextBoxBlockSize.Text), Encoding.ASCII.GetBytes(TextBoxSaltBytes.Text));
             }
             else
             {
-                AES.rijndaelManaged.Encrypt(inputfile, outputfile + ".AES", passoword, Convert.ToInt32(TextBoxKeySize.Text), Convert.ToInt32(TextBoxBlockSize.Text), Encoding.ASCII.GetBytes(TextBoxSaltBytes.Text));
+                AES.rijndaelManaged.Encrypt(inputfile, outputfile + ".aes", passoword, Convert.ToInt32(TextBoxKeySize.Text), Convert.ToInt32(TextBoxBlockSize.Text), Encoding.ASCII.GetBytes(TextBoxSaltBytes.Text));
             }
         }
 
@@ -135,9 +135,17 @@ namespace FileEncryptor
                 "Password:    Your password");
         }
 
-        private void ButtonClear_Click_1(object sender, RoutedEventArgs e)
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
+            if(e.Key == Key.Delete)
+            {
+                ListBoxFileNames.Items.Remove(ListBoxFileNames.SelectedItem);
+            }
+        }
 
+        private void ListBoxItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start(ListBoxFileNames.SelectedItem.ToString());
         }
     }
 }

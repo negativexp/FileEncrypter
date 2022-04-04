@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileEncryptor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="800"
-        Background="White">
+        Title="AES encryption/decryption" Height="400" Width="800"
+        Background="White"
+        KeyDown="Window_KeyDown">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,7 +31,13 @@
 
         <Grid Grid.Row="0" Grid.RowSpan="2">
             <TextBlock Text="Your files:" Margin="10 0 0 0" FontSize="14" FontFamily="Segoe UI"/>
-            <ListBox Name="ListBoxFileNames" Margin="10 20 5 10"/>
+            <ListBox Name="ListBoxFileNames" Margin="10 20 5 10">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                        <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1">
