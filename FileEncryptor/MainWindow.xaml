@@ -35,8 +35,9 @@
 
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="133*"/>
+                <ColumnDefinition Width="67*"/>
+                <ColumnDefinition Width="200*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -46,33 +47,37 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Salt bytes: " FontSize="14" FontFamily="Segoe UI" Padding="5" Grid.Row="0" Grid.Column="0"/>
-            <TextBox Name="TextBoxSaltBytes" FontSize="14" FontFamily="Segoe UI" HorizontalAlignment="Right" Height="20" Width="110" Margin="5"
-                     Grid.Row="0" Grid.Column="0"/>
+            <TextBlock Text="Salt bytes: " FontSize="14" FontFamily="Segoe UI" Padding="5" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <TextBox Name="TextBoxSaltBytes" FontSize="14" FontFamily="Segoe UI" HorizontalAlignment="Left" Height="20" Width="110" Margin="85,5,0,5"
+                     Grid.Row="0" Grid.Column="0" Text="12345678" Grid.ColumnSpan="2"/>
 
-            <TextBlock Text="Key size: " FontSize="14" FontFamily="Segoe UI" Padding="5" Grid.Row="0" Grid.Column="1"/>
-            <TextBox Name="TextBoxKeySize" FontSize="14" FontFamily="Segoe UI" HorizontalAlignment="Right" Height="20" Width="110" Margin="0 0 10 0"
-                     Grid.Row="0" Grid.Column="1"/>
+            <TextBlock Text="Key size: " FontSize="14" FontFamily="Segoe UI" Padding="5" Grid.Row="0" Grid.Column="2"/>
+            <TextBox Name="TextBoxKeySize" FontSize="14" FontFamily="Segoe UI" HorizontalAlignment="Left" Height="20" Width="110" Margin="80,5,0,5"
+                     Grid.Row="0" Grid.Column="2" Text="256"/>
 
-            <TextBlock Text="Block size: " FontSize="14" FontFamily="Segoe UI" Padding="5" Grid.Row="1"/>
-            <TextBox Name="TextBoxBlockSize" FontSize="14" FontFamily="Segoe UI" HorizontalAlignment="Right" Height="20" Width="110" Margin="5"
-                     Grid.Row="1" Grid.Column="0"/>
+            <TextBlock Text="Block size: " FontSize="14" FontFamily="Segoe UI" Padding="5" Grid.Row="1" Grid.ColumnSpan="2"/>
+            <TextBox Name="TextBoxBlockSize" FontSize="14" FontFamily="Segoe UI" HorizontalAlignment="Left" Height="20" Width="110" Margin="85,5,0,5"
+                     Grid.Row="1" Grid.Column="0" Text="128" Grid.ColumnSpan="2"/>
 
-            <TextBlock Text="Password: " FontSize="14" FontFamily="Segoe UI" Padding="5" Grid.Row="1" Grid.Column="1"/>
-            <TextBox Name="TextBoxPassword" FontSize="14" FontFamily="Segoe UI" HorizontalAlignment="Right" Height="20" Width="110" Margin="0 0 10 0"
-                     Grid.Row="1" Grid.Column="1"/>
+            <TextBlock Text="Password: " FontSize="14" FontFamily="Segoe UI" Padding="5" Grid.Row="1" Grid.Column="2"/>
+            <TextBox Name="TextBoxPassword" FontSize="14" FontFamily="Segoe UI" HorizontalAlignment="Left" Height="20" Width="110" Margin="80,5,0,5"
+                     Grid.Row="1" Grid.Column="2"/>
 
-            <TextBlock Text="Change location?" FontSize="14" FontFamily="Segoe UI" Padding="5" Grid.Row="2" Grid.Column="0"/>
+            <TextBlock Text="Change location?" FontSize="14" FontFamily="Segoe UI" Padding="5" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
             <CheckBox Name="CheckBoxChageDir" HorizontalAlignment="Left" Margin="116,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="16"
                       Checked="CheckBoxChageDir_Checked" Unchecked="CheckBoxChageDir_Unchecked"/>
-            <Button Name="ButtonBrowse" Content="Browse" Grid.Row="2" Grid.Column="1" Height="20" Width="75" HorizontalAlignment="Right"
-                    Margin="0 0 10 0" Click="ButtonBrowse_Click" Visibility="Hidden"/>
-            <TextBox Name="TextBoxLocation" Grid.Row="3" Grid.ColumnSpan="2" Height="20" FontSize="14" FontFamily="Segoe UI"
-                     Margin="5 0 10 0" IsReadOnly="True" Visibility="Hidden"/>
+            <Button Name="ButtonBrowse" Content="Browse" Grid.Row="2" Grid.Column="2" Height="20" Width="75" HorizontalAlignment="Left"
+                    Margin="115,5,0,5" Click="ButtonBrowse_Click" Visibility="Hidden"/>
+            <TextBox Name="TextBoxLocation" Grid.Row="3" Grid.ColumnSpan="3" Height="20" FontSize="14" FontFamily="Segoe UI"
+                     Margin="5,5,10,5" IsReadOnly="True" Visibility="Hidden"/>
 
 
-            <Button Name="ButtonStart" Content="Start!" Height="20" Width="75" Grid.Row="4" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+            <Button Name="ButtonStart" Content="Start!" Height="20" Width="75" Grid.Row="4" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right"
                     Margin="0 0 10 10" Click="ButtonStart_Click"/>
+            <Button Name="ButtonClear" Content="Clear" Height="20" Width="75" Grid.Row="4" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,90,10"
+                    Click="ButtonClear_Click"/>
+            <Button Name="ButtonInfo" Content="Info" Height="20" Width="75" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                Margin="0,0,53,10" Click="ButtonInfo_Click"/>
 
         </Grid>
     </Grid>

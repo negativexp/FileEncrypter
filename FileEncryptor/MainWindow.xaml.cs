@@ -72,13 +72,11 @@ namespace FileEncryptor
                     if(CheckIfFileIsAES(item))
                     {
                         //decrypt
-                        System.Windows.MessageBox.Show("decrypt");
-                        Decrypt(item, item, bytepass, item);
+                        Decrypt(item, item.Replace(".AES", ""), bytepass);
                     }
                     else
                     {
                         //encrypt
-                        System.Windows.MessageBox.Show("encrypt");
                         Encrypt(item, item, bytepass, item);
                     }
                 }
@@ -98,28 +96,48 @@ namespace FileEncryptor
             return true;
         }
 
-        private void Encrypt(string inputfile, string outputfile, byte[] passoword, string item)
-        {
-            if((bool)CheckBoxChageDir.IsChecked)
-            {
-                AES.rijndaelManaged.Encrypt(inputfile, TextBoxLocation.Text + "/" + System.IO.Path.GetFileName(item) + ".AES", passoword);
-            }
-            else
-            {
-                AES.rijndaelManaged.Encrypt(inputfile, outputfile + ".AES", passoword);
-            }
-        }
-
-        private void Decrypt(string inputfile, string outputfile, byte[] passoword, string item)
+        private void Decrypt(string inputfile, string outputfile, byte[] passoword)
         {
             if ((bool)CheckBoxChageDir.IsChecked)
             {
-                AES.rijndaelManaged.Decrypt(inputfile, TextBoxLocation.Text + "/" + System.IO.Path.GetFileName(item), passoword);
+                AES.rijndaelManaged.Decrypt(inputfile, TextBoxLocation.Text + "/" + System.IO.Path.GetFileName(outputfile.Replace(".AES", "")), passoword, Convert.ToInt32(TextBoxKeySize.Text), Convert.ToInt32(TextBoxBlockSize.Text), Encoding.ASCII.GetBytes(TextBoxSaltBytes.Text));
             }
             else
             {
-                AES.rijndaelManaged.Decrypt(inputfile, outputfile + ".AES", passoword);
+                AES.rijndaelManaged.Decrypt(inputfile, outputfile, passoword, Convert.ToInt32(TextBoxKeySize.Text), Convert.ToInt32(TextBoxBlockSize.Text), Encoding.ASCII.GetBytes(TextBoxSaltBytes.Text));
             }
+        }
+        private void Encrypt(string inputfile, string outputfile, byte[] passoword, string item)
+        {
+            if ((bool)CheckBoxChageDir.IsChecked)
+            {
+                AES.rijndaelManaged.Encrypt(inputfile, TextBoxLocation.Text + "/" + System.IO.Path.GetFileName(item) + ".AES", passoword, Convert.ToInt32(TextBoxKeySize.Text), Convert.ToInt32(TextBoxBlockSize.Text), Encoding.ASCII.GetBytes(TextBoxSaltBytes.Text));
+            }
+            else
+            {
+                AES.rijndaelManaged.Encrypt(inputfile, outputfile + ".AES", passoword, Convert.ToInt32(TextBoxKeySize.Text), Convert.ToInt32(TextBoxBlockSize.Text), Encoding.ASCII.GetBytes(TextBoxSaltBytes.Text));
+            }
+        }
+
+        private void ButtonClear_Click(object sender, RoutedEventArgs e)
+        {
+            ListBoxFileNames.Items.Clear();
+        }
+
+        private void ButtonInfo_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.MessageBox.Show("Salt bytes:   Should contain 8+ bytes \n" +
+                "\n" +
+                "Key size:      128, 192, 256 bits \n" +
+                "\n" +
+                "Block size:   128, 192, 256 bits \n" +
+                "\n" +
+                "Password:    Your password");
+        }
+
+        private void ButtonClear_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
