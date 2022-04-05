@@ -1,0 +1,33 @@
+﻿<Window x:Class="FileEncryptor.InfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileEncryptor"
+        mc:Ignorable="d"
+        Title="Created by 192.168.0.1" Height="425" Width="425"
+        ResizeMode="NoResize" WindowStyle="ToolWindow">
+    <Grid>
+        <Grid Height="30" VerticalAlignment="Top">
+            <TextBlock Text="AES encryption/decryption" FontSize="20" FontFamily="Segoe UI" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Height="354" VerticalAlignment="Bottom">
+            <Border BorderBrush="Black" BorderThickness="1" Height="171" VerticalAlignment="Top" Margin="5">
+                <Grid>
+                    <TextBlock Text="How to use" FontSize="16" FontFamily="Segoe UI" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <TextBlock Text="To start using the program, you will first have to get files to encrypt, drag and drop them to continue. Create your salt bytes, it should contain 8+ bytes (don't use spacebar to seperate them). Then choose block size and key size and last thing to do is to create your password. You will not be able to decrypt the data unless the salt bytes, block size, key size and password are correct. If you want to decrypt your data just repeat the process." FontSize="12" FontFamily="Segoe UI" Margin="25,25,25,10" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+
+            <Border Height="171" Margin="5" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Bottom">
+                <Grid>
+                    <TextBlock Text="Useful Information" FontSize="16" FontFamily="Segoe UI" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <TextBlock Text="Advanced Encryption Standard is a standardized algorithm used to encrypt data in computer science. It is a symmetric block cipher that encrypts and decrypts data divided into blocks of a fixed length with the same key."  FontSize="12" FontFamily="Segoe UI" Margin="25,25,25,80" TextWrapping="Wrap"/>
+                    <TextBlock Text="Block size:  128, 192, 256 bits"  FontSize="12" FontFamily="Segoe UI" TextWrapping="Wrap" Margin="0,103,0,51" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Key size:     128, 192, 256 bits"  FontSize="12" FontFamily="Segoe UI" TextWrapping="Wrap" Margin="0,119,0,35" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Salt bytes:     8 or more bytes"  FontSize="12" FontFamily="Segoe UI" TextWrapping="Wrap" Margin="0,135,0,19" HorizontalAlignment="Center"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

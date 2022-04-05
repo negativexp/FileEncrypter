@@ -67,19 +67,24 @@ namespace FileEncryptor
             //check if there are files to encrypt or decrypt
             if (ListBoxFileNames.Items.Count != 0)
             {
-                foreach (string item in ListBoxFileNames.Items)
+                if (TextBoxLocation.Text != "")
                 {
-                    if(CheckIfFileIsAES(item))
+                    foreach (string item in ListBoxFileNames.Items)
                     {
-                        //decrypt
-                        Decrypt(item, item.Replace(".aes", ""), bytepass);
-                    }
-                    else
-                    {
-                        //encrypt
-                        Encrypt(item, item, bytepass, item);
+                        if (CheckIfFileIsAES(item))
+                        {
+                            //decrypt
+                            Decrypt(item, item.Replace(".aes", ""), bytepass);
+                        }
+                        else
+                        {
+                            //encrypt
+                            Encrypt(item, item, bytepass, item);
+                        }
                     }
                 }
+                else
+                    System.Windows.MessageBox.Show("Please select location or uncheck 'Change location?'");
             }
             else
             {
@@ -126,13 +131,8 @@ namespace FileEncryptor
 
         private void ButtonInfo_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.MessageBox.Show("Salt bytes:   Should contain 8+ bytes \n" +
-                "\n" +
-                "Key size:      128, 192, 256 bits \n" +
-                "\n" +
-                "Block size:   128, 192, 256 bits \n" +
-                "\n" +
-                "Password:    Your password");
+            InfoWindow infowindows = new InfoWindow();
+            infowindows.Show();
         }
 
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

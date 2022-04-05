@@ -46,3 +46,5 @@ C:\Users\matta\Documents\GitHub\FileEncrypter\FileEncryptor\obj\Debug\FileEncryp
 C:\Users\matta\Documents\GitHub\FileEncrypter\FileEncryptor\obj\Debug\FileEncryptor.csproj.CoreCompileInputs.cache
 C:\Users\matta\Documents\GitHub\FileEncrypter\FileEncryptor\obj\Debug\FileEncryptor.exe
 C:\Users\matta\Documents\GitHub\FileEncrypter\FileEncryptor\obj\Debug\FileEncryptor.pdb
+C:\Users\matyas.schuller\Documents\GitHub\FileEncrypter\FileEncryptor\obj\Debug\InfoWindow.g.cs
+C:\Users\matyas.schuller\Documents\GitHub\FileEncrypter\FileEncryptor\obj\Debug\InfoWindow.baml
