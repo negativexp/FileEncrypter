@@ -67,24 +67,19 @@ namespace FileEncryptor
             //check if there are files to encrypt or decrypt
             if (ListBoxFileNames.Items.Count != 0)
             {
-                if (TextBoxLocation.Text != "")
+                foreach (string item in ListBoxFileNames.Items)
                 {
-                    foreach (string item in ListBoxFileNames.Items)
+                    if (CheckIfFileIsAES(item))
                     {
-                        if (CheckIfFileIsAES(item))
-                        {
-                            //decrypt
-                            Decrypt(item, item.Replace(".aes", ""), bytepass);
-                        }
-                        else
-                        {
-                            //encrypt
-                            Encrypt(item, item, bytepass, item);
-                        }
+                        //decrypt
+                        Decrypt(item, item.Replace(".aes", ""), bytepass);
+                    }
+                    else
+                    {
+                        //encrypt
+                        Encrypt(item, item, bytepass, item);
                     }
                 }
-                else
-                    System.Windows.MessageBox.Show("Please select location or uncheck 'Change location?'");
             }
             else
             {
