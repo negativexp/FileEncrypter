@@ -30,7 +30,7 @@
         </Grid>
 
         <Grid Grid.Row="0" Grid.RowSpan="2">
-            <TextBlock Text="Your files:" Margin="10 0 0 0" FontSize="14" FontFamily="Segoe UI"/>
+            <TextBlock Text="Your files (drag and drop):" Margin="10 0 0 0" FontSize="14" FontFamily="Segoe UI"/>
             <ListBox Name="ListBoxFileNames" Margin="10 20 5 10">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
